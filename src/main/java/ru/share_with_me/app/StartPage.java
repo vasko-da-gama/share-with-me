@@ -16,8 +16,6 @@ public class StartPage extends HttpServlet {
                     HttpServletResponse response) throws IOException, ServletException {
         // code
 
-
-
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }
