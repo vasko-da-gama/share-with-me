@@ -5,9 +5,24 @@
 <html>
     <head>
         <link rel="stylesheet" href="resources/style.css" type="text/css">
-        <!-- <style type="text/css"></style> -->
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function () {
+                function generate_token (max, min) {
+                    // max, min - length
+                    let res = "", r = 0,
+                    length = Math.floor(Math.random() * (max - min) + min);
+
+                    for (let i = 0; i < length; i++) {
+                        r = Math.floor(Math.random() * (20 - 1) + 1);
+                        if (r % 2)
+                            res += String.fromCharCode(Math.floor(Math.random() * ('Z'.charCodeAt(0) - 'A'.charCodeAt(0)) + 'A'.charCodeAt(0)));
+                        else if (r < 10) res += r;
+                        else res += String.fromCharCode(Math.floor(Math.random() * ('z'.charCodeAt(0) - 'a'.charCodeAt(0)) + 'a'.charCodeAt(0)));
+                    }
+                    
+                    return res;
+                }
+
                 document.getElementById("create_button").addEventListener("click", function (e) {
                     let input = document.getElementById("input_url");
                     if (input.value === "") {
@@ -18,7 +33,22 @@
                         let video_id = input.value.match(/watch\?v=\S*/)[0].split('=')[1];
                         if (video_id.indexOf('&') > 0) video_id = video_id.slice(0, video_id.indexOf('&'));
 
-                        console.log(video_id);
+                        let base_room_info = {
+                            token: generate_token(20, 50),
+                            video_id: video_id
+                        };
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', 'addRoom', false);
+                        xhr.send(null);
+
+                        if (xhr.status != 200) {
+						  console.log("ERROR STATE", xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+						} else {
+						  console.log( JSON.parse(xhr.responseText) );
+						}
+
+                        console.log(base_room_info);
                     }
                 });
             });
