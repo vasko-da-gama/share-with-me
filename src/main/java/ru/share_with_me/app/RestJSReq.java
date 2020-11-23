@@ -10,13 +10,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.ServletContext;
 
 public class RestJSReq extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request,
                     HttpServletResponse response) throws IOException, ServletException {
         // code
-        // Response res = new Response("Your message recieved");
         String user_token = (String) request.getParameter("token");
         String video_id = (String) request.getParameter("video_id");
         String query = "INSERT INTO rooms (owner_token,video_id) VALUES ('" + user_token + "','" + video_id + "')";
@@ -33,12 +34,15 @@ public class RestJSReq extends HttpServlet {
             statement.executeUpdate(query);
 
             // check if room created // TODO mark owner_token as PRIMARY_KEY
-            query = "SELECT id FROM rooms WHERE owner_token='" + user_token + "'";
+            query = "SELECT * FROM rooms WHERE owner_token='" + user_token + "'";
             ResultSet rs = statement.executeQuery(query);
 
             if (rs.next() == false) {
                 jsonAns = gson.toJson(new NegativeResponse("SQL: room is not created"));
             } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("token", user_token);
+
                 Integer id = (Integer) rs.getInt("id");
                 jsonAns = gson.toJson(new PositiveResponse("room_id=" + id));
             }

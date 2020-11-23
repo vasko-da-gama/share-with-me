@@ -15,6 +15,11 @@
     <servlet-class>ru.share_with_me.app.RestJSReq</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>Room</servlet-name>
+    <servlet-class>ru.share_with_me.app.Room</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>startPage</servlet-name>
     <url-pattern>/</url-pattern>
@@ -23,6 +28,11 @@
   <servlet-mapping>
     <servlet-name>jsReq</servlet-name>
     <url-pattern>/addRoom</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Room</servlet-name>
+    <url-pattern>/room</url-pattern>
   </servlet-mapping>
 
 

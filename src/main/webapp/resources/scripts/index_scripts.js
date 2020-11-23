@@ -45,9 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // parse result (for sync req)
             if (xhr.status != 200) {
-              console.log("ERROR STATE", xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+                console.log("ERROR STATE", xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
             } else {
-              console.log( JSON.parse(xhr.responseText) );
+                console.log( JSON.parse(xhr.responseText) );
+                let res = JSON.parse(xhr.responseText);
+                if (res.answer) {
+                    let id = res.answer.split('=')[1];
+                    let redirect_link = window.location.origin + "/share_with_me/room?id=" + id;
+                    window.location.href = redirect_link;
+                }
             }
 
             console.log(base_room_info);
