@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // parse result (for sync req)
             if (xhr.status != 200) {
-                console.log("ERROR STATE", xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+                console.log("ERROR STATE", xhr.status + ': ' + xhr.statusText );
             } else {
                 console.log( JSON.parse(xhr.responseText) );
                 let res = JSON.parse(xhr.responseText);

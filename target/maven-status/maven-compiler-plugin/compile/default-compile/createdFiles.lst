@@ -1,5 +1,7 @@
 ru\share_with_me\app\Room.class
-ru\share_with_me\app\RestJSReq$PositiveResponse.class
+ru\share_with_me\app\GetHttpSessionConfigurator.class
 ru\share_with_me\app\StartPage.class
 ru\share_with_me\app\RestJSReq$NegativeResponse.class
+ru\share_with_me\app\RoomSocket.class
 ru\share_with_me\app\RestJSReq.class
+ru\share_with_me\app\RestJSReq$PositiveResponse.class
