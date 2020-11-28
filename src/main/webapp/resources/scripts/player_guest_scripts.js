@@ -5,7 +5,8 @@ const   UNSTARTED = -1,
         ENDED = 0,
         PLAYING = 1,
         PAUSED = 2,
-        BUFFERING = 3;
+        BUFFERING = 3
+        CUED = 5;
 
 var player;
 var video_id;
@@ -26,7 +27,7 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
-var webSocket;
+var webSocket = null;
 function onPlayerReady(e) {
     console.log("describtion of player:", e.target);
 
@@ -38,7 +39,6 @@ function onPlayerReady(e) {
         console.log("Connected..");
     };
     webSocket.onmessage = function(message){
-        // TODO: implement set state
         let current_states = JSON.parse(message.data);
         console.log(current_states);
         if (current_states.error) {
@@ -46,11 +46,7 @@ function onPlayerReady(e) {
             return;
         }
 
-        // state_code: e.data,
-        // time: e.target.getCurrentTime()
-
         switch (current_states.state_code) {
-            case UNSTARTED: {} break;
             case PLAYING: {
             	if (player.getPlayerState() == PLAYING) {
                     console.log("seek to", current_states.time);
@@ -62,47 +58,22 @@ function onPlayerReady(e) {
                 } 
                 console.log("seek to", current_states.time);
             } break;
+            case UNSTARTED:
             case BUFFERING:
             case PAUSED: {
+            	console.log("current state: ", player.getPlayerState());
                 if (player.getPlayerState() == PLAYING)
                     player.pauseVideo();
             } break;
-            case ENDED: {
-                alert("Thank you for watching this video with our application");
-            }
+            case ENDED: {}
         }
     };
     webSocket.onclose = function(message){ console.log("Connection closed"); };
     webSocket.onerror = function(message){ console.log("Smth wrong: ", message); };
-
-    // e.target.playVideo();
-
-    // document.getElementById("move_to_button").addEventListener('click', function (event) {
-    //     console.log('clicked on button');
-    //     e.target.seekTo(321.050284);
-    // });
 }
 
 var done = false;
-function onPlayerStateChange(e) {
-    // if (done === false) {
-    //     console.log("Available player states:", YT.PlayerState);
-    //     done = true;
-    // }
-
-    // let current_states = {
-    //     state_code: e.data,
-    //     time: e.target.getCurrentTime()
-    // };
-
-    // console.log("current states", current_states);
-    // webSocket.send(JSON.stringify(current_states));
-
-    // if (e.data == YT.PlayerState.PLAYING && !done) {
-    //     setTimeout(stopVideo, 6000);
-    //     done = true;
-    // }
-}
+function onPlayerStateChange(e) {}
 
 function stopVideo() {
     player.stopVideo();
@@ -112,10 +83,13 @@ function stopVideo() {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    // synchronized
     document.getElementById("synchronized").addEventListener("click", function () {
-    	webSocket.send(JSON.stringify({ask: 'give me current state'}));
-        // setTimeout(() => {webSocket.send(JSON.stringify({ask: 'give me current state'}));}, 1000);
-        player.playVideo();
+        if (webSocket) {
+            webSocket.send(JSON.stringify({ask: 'give me current state'}));
+            // setTimeout(() => {webSocket.send(JSON.stringify({ask: 'give me current state'}));}, 1000);
+            let isCUED = player.getPlayerState() == CUED;
+            player.playVideo();
+            if (isCUED) player.pauseVideo();
+        }
     });
 });

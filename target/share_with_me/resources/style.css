@@ -150,7 +150,11 @@ body {
 }
 
 
-
+/* PAGE NOT FOUND */
+#not_found_container {
+    text-align: center;
+    padding: 100px;
+}
 
 
 @font-face {

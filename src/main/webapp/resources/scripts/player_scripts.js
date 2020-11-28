@@ -43,13 +43,6 @@ function onPlayerReady(e) {
     };
     webSocket.onclose = function(message){ console.log("Connection closed"); };
     webSocket.onerror = function(message){ console.log("Smth wrong"); };
-
-    // e.target.playVideo();
-
-    // document.getElementById("move_to_button").addEventListener('click', function (event) {
-    //     console.log('clicked on button');
-    //     e.target.seekTo(321.050284);
-    // });
 }
 
 var done = false;
@@ -66,11 +59,6 @@ function onPlayerStateChange(e) {
 
     console.log("current states", current_states);
     webSocket.send(JSON.stringify(current_states));
-
-    // if (e.data == YT.PlayerState.PLAYING && !done) {
-    //     setTimeout(stopVideo, 6000);
-    //     done = true;
-    // }
 }
 
 function stopVideo() {
@@ -78,8 +66,3 @@ function stopVideo() {
 }
 
 /* YOUTUBEAPI INITIALIZED */
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-    
-// });

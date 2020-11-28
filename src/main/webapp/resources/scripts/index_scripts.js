@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-            console.log(base_room_info);
+            // console.log(base_room_info);
         }
     });
 });

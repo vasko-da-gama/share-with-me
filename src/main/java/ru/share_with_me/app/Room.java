@@ -52,9 +52,7 @@ public class Room extends HttpServlet {
             } else {
                 request.getRequestDispatcher("guest_player.jsp").forward(request, response);
             }
-        }
-        catch(ClassNotFoundException ex) { request.getRequestDispatcher("not_found.jsp").forward(request, response); }
-        catch(SQLException ex) { request.getRequestDispatcher("not_found.jsp").forward(request, response); }
+        } catch(SQLException | ClassNotFoundException ex) { request.getRequestDispatcher("not_found.jsp").forward(request, response); }
         
 
         // request.getRequestDispatcher("index.jsp").forward(request, response);

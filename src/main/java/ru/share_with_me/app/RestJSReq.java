@@ -41,10 +41,9 @@ public class RestJSReq extends HttpServlet {
                 jsonAns = gson.toJson(new NegativeResponse("SQL: room is not created"));
             } else {
                 HttpSession session = request.getSession();
-                // TODO: delete already exist room fron DB if token already defined in session (by this token)
                 session.setAttribute("token", user_token);
 
-                Integer id = (Integer) rs.getInt("id");
+                Integer id = (Integer) rs.getInt("id"); // id of created room
                 jsonAns = gson.toJson(new PositiveResponse("room_id=" + id));
             }
 
