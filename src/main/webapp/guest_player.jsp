@@ -2,8 +2,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="resources/style.css" type="text/css">
-        <script src="https://www.youtube.com/iframe_api"></script>
-        <script src="resources/scripts/player_guest_scripts.js"></script>
+        <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
+        <script type="module" src="resources/scripts/player_guest_scripts.js"></script>
     </head>
     <body>
         

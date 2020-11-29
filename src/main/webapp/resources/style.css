@@ -149,6 +149,21 @@ body {
     color: darkgray;
 }
 
+#synchronized {
+    background: white;
+    border: solid black 1px;
+    padding: 13px;
+    border-radius: 10px;
+    font-family: Gardens;
+    font-size: 20px;
+    outline: none;
+    transition: box-shadow 300ms;
+}
+#synchronized:hover {
+	cursor: pointer;
+    box-shadow: 0 0 5px black;
+}
+
 
 /* PAGE NOT FOUND */
 #not_found_container {

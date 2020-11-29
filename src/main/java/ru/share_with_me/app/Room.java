@@ -43,11 +43,12 @@ public class Room extends HttpServlet {
                 return;
             }
             String video_id = rs.getString("video_id");
+            String check_token = rs.getString("owner_token");
             request.setAttribute("video_id", video_id);
             request.setAttribute("room_id", room_id);
 
 
-            if (user_token != null) {
+            if (user_token != null && check_token == user_token) {
                 request.getRequestDispatcher("host_player.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("guest_player.jsp").forward(request, response);
