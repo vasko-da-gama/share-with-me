@@ -52,3 +52,47 @@ function onPlayerStateChange(e) {
 }
 
 /* YOUTUBEAPI INITIALIZED */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+	document.getElementById("new_video").addEventListener("click", function () {
+
+		let input = document.getElementById("new_url");
+		if (input.value === "") alert("Enter URL");
+
+		let video_id = input.value.match(/watch\?v=\S*/)[0].split('=')[1];
+        console.log("video_id", video_id);
+
+        // send to guests new video_id
+        player_p.webSocket.send(JSON.stringify({new_video_id: video_id}));
+
+        // update room in database
+        let room_id = document.getElementById("player_main").getAttribute("data-room");
+        let param = "new_video_id=" + video_id + "&room_id=" + room_id;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/share_with_me/updateRoom', false);
+        xhr.onload = function (e) {
+            if (xhr.status != 200) {
+                console.log("ERROR STATE", xhr.status + ': ' + xhr.statusText );
+            } else {
+                console.log( JSON.parse(xhr.responseText) );
+                let res = JSON.parse(xhr.responseText);
+                if (res.answer) {
+                    console.log(res);
+                }
+            }
+        };
+        xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+        xhr.send(param);
+        // ...
+        
+        let pPlayer = player_p.getPlayer();
+		
+        if (video_id.indexOf('&') > 0) video_id = video_id.slice(0, video_id.indexOf('&'));
+		pPlayer.loadVideoById(video_id);
+	});
+    
+});
+
+

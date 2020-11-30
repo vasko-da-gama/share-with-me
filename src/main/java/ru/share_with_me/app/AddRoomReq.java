@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.ServletContext;
 
-public class RestJSReq extends HttpServlet {
+public class AddRoomReq extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request,
                     HttpServletResponse response) throws IOException, ServletException {
@@ -42,6 +42,7 @@ public class RestJSReq extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("token", user_token);
+                session.setMaxInactiveInterval(60 * 60 * 24); // 24 hours
 
                 Integer id = (Integer) rs.getInt("id"); // id of created room
                 jsonAns = gson.toJson(new PositiveResponse("room_id=" + id));

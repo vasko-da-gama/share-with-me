@@ -20,6 +20,11 @@
 
                 <div id="player_info">
 
+                    <div id="reload_video">
+                        <input type="text" id="new_url" placeholder="URL нового видео" />
+                        <button id="new_video">Загрузить новое видео</button>
+                    </div>
+
                     <p>Поделитесь ссылкой с друзьями для того, чтобы они могли зайти в комнату: <br> http://share-with-me.ru/?room=1 </p>
 
                     <span>По вопросам дизайна (если вы человек со вкусом) пишите нам на почту</span>

@@ -12,13 +12,21 @@
 
   <servlet>
     <servlet-name>jsReq</servlet-name>
-    <servlet-class>ru.share_with_me.app.RestJSReq</servlet-class>
+    <servlet-class>ru.share_with_me.app.AddRoomReq</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>jsReqUpdate</servlet-name>
+    <servlet-class>ru.share_with_me.app.UpdateRoomReq</servlet-class>
   </servlet>
 
   <servlet>
     <servlet-name>Room</servlet-name>
     <servlet-class>ru.share_with_me.app.Room</servlet-class>
   </servlet>
+
+
+
 
   <servlet-mapping>
     <servlet-name>startPage</servlet-name>
@@ -28,6 +36,11 @@
   <servlet-mapping>
     <servlet-name>jsReq</servlet-name>
     <url-pattern>/addRoom</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>jsReqUpdate</servlet-name>
+    <url-pattern>/updateRoom</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>

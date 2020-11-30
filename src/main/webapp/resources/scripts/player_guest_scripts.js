@@ -37,6 +37,12 @@ function onPlayerReady(e) {
             return;
         }
 
+        if (current_states.new_video_id) {
+            console.log("change video to", current_states.new_video_id);
+            e.target.loadVideoById(current_states.new_video_id);
+            return;
+        }
+
         switch (current_states.state_code) {
             case PLAYING: {
             	if (e.target.getPlayerState() == PLAYING) {

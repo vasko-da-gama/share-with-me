@@ -149,7 +149,7 @@ body {
     color: darkgray;
 }
 
-#synchronized {
+#synchronized, #new_video {
     background: white;
     border: solid black 1px;
     padding: 13px;
@@ -159,10 +159,27 @@ body {
     outline: none;
     transition: box-shadow 300ms;
 }
-#synchronized:hover {
+#synchronized:hover, #new_video:hover {
 	cursor: pointer;
     box-shadow: 0 0 5px black;
 }
+
+#reload_video {
+	display: grid;
+    margin: auto;
+    width: 35%;
+}
+#new_url {
+	margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+    text-align: center;
+    font-family: Gardens;
+    font-size: 18px;
+    padding: 6px;
+    outline: none;
+}
+
 
 
 /* PAGE NOT FOUND */

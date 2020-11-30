@@ -29,7 +29,7 @@ public class Room extends HttpServlet {
         }
 
         // generate sql query
-        String query = "SELECT video_id FROM rooms WHERE id='"+ room_id +"'";
+        String query = "SELECT video_id, owner_token FROM rooms WHERE id='"+ room_id +"'";
         
         // execute query
         try {
@@ -48,12 +48,15 @@ public class Room extends HttpServlet {
             request.setAttribute("room_id", room_id);
 
 
-            if (user_token != null && check_token == user_token) {
+            if (user_token != null && check_token.equals(user_token)) {
                 request.getRequestDispatcher("host_player.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("guest_player.jsp").forward(request, response);
             }
-        } catch(SQLException | ClassNotFoundException ex) { request.getRequestDispatcher("not_found.jsp").forward(request, response); }
+        } catch(SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            request.getRequestDispatcher("not_found.jsp").forward(request, response);
+        }
         
 
         // request.getRequestDispatcher("index.jsp").forward(request, response);
