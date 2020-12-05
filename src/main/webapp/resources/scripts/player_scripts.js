@@ -58,9 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById("new_video").addEventListener("click", function () {
 
 		let input = document.getElementById("new_url");
-		if (input.value === "") alert("Enter URL");
+		if (input.value === "") {
+            alert("Enter URL");
+            return;
+        }
 
-		let video_id = input.value.match(/watch\?v=\S*/)[0].split('=')[1];
+        let video_id = input.value.match(/watch\?v=\S*/)[0].split('=')[1];
+        if (video_id.indexOf('&') > 0) video_id = video_id.slice(0, video_id.indexOf('&'));
         console.log("video_id", video_id);
 
         // send to guests new video_id
@@ -88,8 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // ...
         
         let pPlayer = player_p.getPlayer();
-		
-        if (video_id.indexOf('&') > 0) video_id = video_id.slice(0, video_id.indexOf('&'));
 		pPlayer.loadVideoById(video_id);
 	});
     

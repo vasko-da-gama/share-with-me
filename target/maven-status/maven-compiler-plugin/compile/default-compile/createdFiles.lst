@@ -2,9 +2,7 @@ ru\share_with_me\app\json_answers\NegativeResponse.class
 ru\share_with_me\app\Room.class
 ru\share_with_me\app\GetHttpSessionConfigurator.class
 ru\share_with_me\app\StartPage.class
-ru\share_with_me\app\AddRoomReq$NegativeResponse.class
 ru\share_with_me\app\AddRoomReq.class
 ru\share_with_me\app\RoomSocket.class
-ru\share_with_me\app\AddRoomReq$PositiveResponse.class
 ru\share_with_me\app\UpdateRoomReq.class
 ru\share_with_me\app\json_answers\PositiveResponse.class

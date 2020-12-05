@@ -52,7 +52,9 @@ public class RoomSocket {
             if (!rooms.containsKey(this.room_id)) {
                 rooms.put(room_id, new HashSet<Session>());
             }
-            hosts.put(room_id, session);
+            if (!hosts.containsKey(this.room_id)) {
+                hosts.put(room_id, session);
+            }
         } else {
             // add this session to session list in rooms[room_id]
             System.out.println("Guest connected");

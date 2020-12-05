@@ -1,4 +1,27 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html" isELIgnored="false" %>
+<%@ page import="javax.servlet.http.HttpSession, java.util.*, java.sql.*" %>
+
+<%
+String user_token = (String) session.getAttribute("token");
+String res_url = null;
+
+if (user_token != null) {
+	try{
+		// get room_id
+		Class.forName("org.postgresql.Driver");
+	    Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/share_with_me", "postgres", "313103");
+	    Statement statement = conn.createStatement();
+
+	    String query = "SELECT id FROM rooms WHERE owner_token='"+ user_token +"'";
+	    ResultSet rs = statement.executeQuery(query);
+	    if (rs.next() != false) {
+	    	res_url = "/share_with_me/room?id=" + (Integer) rs.getInt("id");
+		}
+	}
+	catch(SQLException | ClassNotFoundException ex) { System.out.println(ex.getMessage()); }
+}
+%>
+
 <html>
     <head>
         <link rel="stylesheet" href="resources/style.css" type="text/css">
@@ -9,6 +32,7 @@
             <div id="room_create">
                 <h1>Share With Me</h1>
                 <p>Смотрите любимые видеоролики вместе с друзьями</p>
+                <%= (res_url != null ? "<p style='margin-top: 13px'>У вас уже есть <a href='"+ res_url +"'>комната</a></p>" : "") %>
                 <!-- TODO: replace this with form -->
                 <div id="room_create_button">
                     <input id="input_url" type="text" placeholder="Вставьте сюда URL" />

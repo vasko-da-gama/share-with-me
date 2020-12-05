@@ -1,5 +1,7 @@
 package ru.share_with_me.app;
 
+import ru.share_with_me.app.json_answers.*;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -60,20 +62,5 @@ public class AddRoomReq extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         out.print(jsonAns);
         out.flush();
-    }
-
-
-    public class PositiveResponse {
-        private String answer;
-        PositiveResponse(String a) { this.answer = a; }
-
-        public String getAnswer() { return this.answer; }
-    }
-
-    public class NegativeResponse {
-        private String error;
-        NegativeResponse(String a) { this.error = a; }
-
-        public String getError() { return this.error; }
     }
 }
