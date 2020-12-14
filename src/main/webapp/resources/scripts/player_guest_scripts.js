@@ -24,7 +24,7 @@ function onPlayerReady(e) {
 
     // OPEN SOCKET
     let room_id = document.getElementById("player_main").getAttribute("data-room");
-    this.webSocket = new WebSocket("ws://localhost:8081/share_with_me/roomsocket/" + room_id);
+    this.webSocket = new WebSocket("ws://share-with-me:8081/roomsocket/" + room_id); // TODO auto creation url
 
     this.webSocket.onopen = function(message){
         console.log("Connected..");

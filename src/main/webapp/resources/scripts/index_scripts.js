@@ -51,8 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let res = JSON.parse(xhr.responseText);
                 if (res.answer) {
                     let id = res.answer.split('=')[1];
-                    let redirect_link = window.location.origin + "/share_with_me/room?id=" + id;
-                    window.location.href = redirect_link;
+                    window.location.href = "/room?id=" + id;
                 }
             }
 

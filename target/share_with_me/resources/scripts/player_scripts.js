@@ -15,7 +15,12 @@ function onPlayerReady(e) {
 
     // OPEN SOCKET
     let room_id = document.getElementById("player_main").getAttribute("data-room");
-    this.webSocket = new WebSocket("ws://localhost:8081/share_with_me/roomsocket/" + room_id);
+
+    let socket_link = "ws://" + window.location.hostname + ":8081/roomsocket";
+    
+
+
+    this.webSocket = new WebSocket("ws://share-with-me:8081/roomsocket/" + room_id); // do the same
 
     this.webSocket.onopen = function(message){
         console.log("Connected..");
@@ -75,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let param = "new_video_id=" + video_id + "&room_id=" + room_id;
 
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/share_with_me/updateRoom', false);
+        xhr.open('POST', '/updateRoom', false);
         xhr.onload = function (e) {
             if (xhr.status != 200) {
                 console.log("ERROR STATE", xhr.status + ': ' + xhr.statusText );

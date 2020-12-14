@@ -15,7 +15,7 @@ if (user_token != null) {
 	    String query = "SELECT id FROM rooms WHERE owner_token='"+ user_token +"'";
 	    ResultSet rs = statement.executeQuery(query);
 	    if (rs.next() != false) {
-	    	res_url = "/share_with_me/room?id=" + (Integer) rs.getInt("id");
+	    	res_url = "/room?id=" + (Integer) rs.getInt("id");
 		}
 	}
 	catch(SQLException | ClassNotFoundException ex) { System.out.println(ex.getMessage()); }
