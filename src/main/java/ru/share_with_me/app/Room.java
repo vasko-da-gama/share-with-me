@@ -3,6 +3,8 @@ package ru.share_with_me.app;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import ru.share_with_me.app.ini_parser.IniParser;
+
 import java.sql.*;
 
 import javax.servlet.ServletException;
@@ -34,7 +36,13 @@ public class Room extends HttpServlet {
         // execute query
         try {
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/share_with_me", "postgres", "313103");
+
+            IniParser configs = new IniParser();
+            Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:"+ configs.getParameter("postgre_port") +"/"+ configs.getParameter("database_name"),
+                configs.getParameter("database_user"), configs.getParameter("database_password")
+            );
+
             Statement statement = conn.createStatement();
 
             ResultSet rs = statement.executeQuery(query);

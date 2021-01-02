@@ -2,6 +2,7 @@
 /* INITIALIZE YOUTUBE API -> YOUTUBEAPI INITIALIZED */
 
 import {playerObj} from './player/player.js';
+import {js_configs} from './config.js';
 
 let video_id = document.getElementById("player_main").getAttribute("data-video");
 let playerVars = { 'autoplay': 0, 'controls': 1,'autohide':1,'wmode':'opaque', 'color':'white' };
@@ -17,10 +18,9 @@ function onPlayerReady(e) {
     let room_id = document.getElementById("player_main").getAttribute("data-room");
 
     let socket_link = "ws://" + window.location.hostname + ":8081/roomsocket";
-    
 
-
-    this.webSocket = new WebSocket("ws://share-with-me:8081/roomsocket/" + room_id); // do the same
+    // this.webSocket = new WebSocket("ws://share-with-me:8081/roomsocket/" + room_id); // do the same
+    this.webSocket = new WebSocket("ws://"+ js_configs.hostname +":"+ js_configs.port +"/roomsocket/" + room_id);
 
     this.webSocket.onopen = function(message){
         console.log("Connected..");

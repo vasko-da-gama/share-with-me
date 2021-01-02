@@ -1,8 +1,10 @@
 package ru.share_with_me.app;
 
 import ru.share_with_me.app.json_answers.*;
+import ru.share_with_me.app.ini_parser.IniParser;
 
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 import java.sql.*;
@@ -30,7 +32,12 @@ public class AddRoomReq extends HttpServlet {
         // database stuff
         try {
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/share_with_me", "postgres", "313103");
+
+            IniParser configs = new IniParser();
+            Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:"+ configs.getParameter("postgre_port") +"/"+ configs.getParameter("database_name"),
+                configs.getParameter("database_user"), configs.getParameter("database_password")
+            );
 
             Statement statement = conn.createStatement();
             statement.executeUpdate(query);
@@ -54,6 +61,10 @@ public class AddRoomReq extends HttpServlet {
         }
         catch (ClassNotFoundException ex) { jsonAns = gson.toJson(new NegativeResponse("ClassNotFound: " + ex.getMessage())); }
         catch (SQLException ex) { jsonAns = gson.toJson(new NegativeResponse("SQLException: " + ex.getMessage())); }
+        catch (IOException ex) {
+            System.out.println("Exception configuration: " + ex.getMessage());
+            jsonAns = gson.toJson(new NegativeResponse("Configuration exception: " + ex.getMessage()));
+        }
         
         // feedback
         PrintWriter out = response.getWriter();

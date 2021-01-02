@@ -5,4 +5,5 @@ ru\share_with_me\app\StartPage.class
 ru\share_with_me\app\AddRoomReq.class
 ru\share_with_me\app\RoomSocket.class
 ru\share_with_me\app\UpdateRoomReq.class
+ru\share_with_me\app\ini_parser\IniParser.class
 ru\share_with_me\app\json_answers\PositiveResponse.class

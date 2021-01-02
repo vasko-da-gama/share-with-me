@@ -2,6 +2,7 @@
 /* INITIALIZE YOUTUBE API -> YOUTUBEAPI INITIALIZED */
 
 import {playerObj} from './player/player.js';
+import {js_configs} from './config.js';
 
 const   UNSTARTED = -1,
         ENDED = 0,
@@ -24,7 +25,8 @@ function onPlayerReady(e) {
 
     // OPEN SOCKET
     let room_id = document.getElementById("player_main").getAttribute("data-room");
-    this.webSocket = new WebSocket("ws://share-with-me:8081/roomsocket/" + room_id); // TODO auto creation url
+    // this.webSocket = new WebSocket("ws://share-with-me:8081/roomsocket/" + room_id);
+    this.webSocket = new WebSocket("ws://"+ js_configs.hostname +":"+ js_configs.port +"/roomsocket/" + room_id);
 
     this.webSocket.onopen = function(message){
         console.log("Connected..");
