@@ -14,7 +14,7 @@ const   UNSTARTED = -1,
 
 
 let video_id = document.getElementById("player_main").getAttribute("data-video");
-let playerVars = { 'autoplay': 0, 'controls': 0, 'disablekb': 1, 'fs': 1, 'autohide':1,'wmode':'opaque', 'color':'white' };
+let playerVars = { 'autoplay': 0, 'controls': 1, 'disablekb': 0, 'fs': 1, 'autohide':1,'wmode':'opaque', 'color':'white' };
 
 var player_p = new playerObj(
 	video_id, playerVars, onPlayerReady, onPlayerStateChange
@@ -48,13 +48,11 @@ function onPlayerReady(e) {
         switch (current_states.state_code) {
             case PLAYING: {
             	if (e.target.getPlayerState() == PLAYING) {
-                    console.log("seek to", current_states.time);
                     e.target.seekTo(current_states.time);
                 } else {
-                	console.log("seek to", current_states.time);
                     e.target.playVideo();
                     e.target.seekTo(current_states.time);
-                } 
+                }
                 console.log("seek to", current_states.time);
             } break;
             case UNSTARTED:
@@ -81,11 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("synchronized").addEventListener("click", function () {
         if (player_p.webSocket) {
             player_p.webSocket.send(JSON.stringify({ask: 'give me current state'}));
-            // setTimeout(() => {webSocket.send(JSON.stringify({ask: 'give me current state'}));}, 1000);
-            let pPlayer = player_p.getPlayer();
-            let isCUED = pPlayer.getPlayerState() == CUED;
-            pPlayer.playVideo();
-            if (isCUED) pPlayer.pauseVideo();
         }
     });
 });
