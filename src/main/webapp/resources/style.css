@@ -12,6 +12,7 @@ body {
     width: 500px;
     box-shadow: 1px 0px 20px black;
     float: left;
+    background-color: white;
 }
 #right_side {
     height: 100%;
@@ -19,6 +20,23 @@ body {
     float: left;
     background: linear-gradient(0.25turn, #3f87a6, #d0fbaf, #f69d3c);
     overflow-y: scroll;
+}
+
+#central_block {
+    max-width: 1920px;
+    margin: auto;
+}
+
+@media(min-width: 1921px) {
+    body {
+        background: linear-gradient(0.25turn, #3f87a6, #d0fbaf, #f69d3c);
+    }
+    #right_side {
+        background: none;
+    } 
+}
+body a {
+    color: black;
 }
 
 /* #room_create {
@@ -100,9 +118,10 @@ body {
 #player_body {
     /* border: 1px solid black; */
     width: 900px;
-    height: 100%;
+    height: auto;
     margin: auto;
     text-align: center;
+    background: white;
 }
 #player_header {
     font-size: 20px;
@@ -126,12 +145,12 @@ body {
 }
 #player_header li { 
     width: fit-content;
-    box-shadow: 0 0 0 greenyellow;
+    /* box-shadow: 0 0 0 greenyellow; */
     transition: box-shadow 300ms;
 }
 #player_header li:hover {
     cursor: pointer;
-    box-shadow: 0 3px 2px greenyellow;
+    /* box-shadow: 0 3px 2px greenyellow; */
 }
 #player_body #player {
     margin: 15px 0 0 0;

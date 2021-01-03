@@ -4,6 +4,13 @@
         <link rel="stylesheet" href="resources/style.css" type="text/css">
         <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
         <script type="module" src="resources/scripts/player_scripts.js"></script>
+        <style>
+            @media(max-width: 1921px) {
+                body {
+                    background: linear-gradient(0.25turn, #3f87a6, #d0fbaf, #f69d3c);
+                }
+            }
+        </style>
     </head>
     <body>
         
@@ -11,7 +18,7 @@
 
             <div id="player_header">
                 <ul>
-                    <li>Вернуться домой</li>
+                    <li><a href="/">Вернуться домой</a></li>
                 </ul>
             </div>
             
