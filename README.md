@@ -50,8 +50,9 @@ http://share-with-me:PORT
 Конфигурационный файл для java находится в src/main/recources/config.ini, здесь нужно указать порт, пользователя, пароль и имя базы данных
 В собранном проекте этот файл находится здесь: WEB-INF/classes/config.ini
 
-Конфигурационный файл для js скриптов с информацией о хосте и порте для сокета: webapp/resources/scripts/config.js
-В собранном проекте: resources/scripts/config.js
+Конфигурационный файл для js скриптов с информацией о хосте и порте для сокета: <b>webapp/resources/scripts/config.js</b>
+
+В собранном проекте: <b>resources/scripts/config.js</b>
     
 
 </ol>
