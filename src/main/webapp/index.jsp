@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html" isELIgnored="false" %>
-<%@ page import="javax.servlet.http.HttpSession, java.util.*, java.sql.*" %>
+<%@ page import="javax.servlet.http.HttpSession, java.util.*, java.sql.*, ru.share_with_me.app.ini_parser.IniParser" %>
 
 <%
 String user_token = (String) session.getAttribute("token");
@@ -8,8 +8,14 @@ String res_url = null;
 if (user_token != null) {
 	try{
 		// get room_id
-		Class.forName("org.postgresql.Driver");
-	    Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/share_with_me", "postgres", "313103");
+        Class.forName("org.postgresql.Driver");
+        
+        IniParser configs = new IniParser();
+        Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:"+ configs.getParameter("postgre_port") +"/"+ configs.getParameter("database_name"),
+                configs.getParameter("database_user"), configs.getParameter("database_password")
+            );
+
 	    Statement statement = conn.createStatement();
 
 	    String query = "SELECT id FROM rooms WHERE owner_token='"+ user_token +"'";
