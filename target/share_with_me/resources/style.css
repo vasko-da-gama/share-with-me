@@ -111,6 +111,28 @@ body a {
     transition: all 500ms;
 }
 
+@media(max-width: 1390px) {
+	#recomendation_list {
+		min-width: 600px;
+	}
+	.recomendation_iframe {
+		width: 600px;
+	}
+	.recomendation_iframe iframe {
+		width: 600px;
+		height: 337.5px;
+	}
+}
+
+@media(max-width: 1180px) {
+	#left_side {
+		width: 100%;
+	}
+	#room_create h1 {
+		margin-top: 15%;
+	}
+}
+
 /**************************
  *      Player page       *
  *************************/
