@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html" isELIgnored="false" %>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="resources/style.css" type="text/css">
         <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
         <script type="module" src="resources/scripts/player_scripts.js"></script>
@@ -34,7 +35,7 @@
 
                     <p>Поделитесь ссылкой с друзьями для того, чтобы они могли зайти в комнату</p>
 
-                    <span>По вопросам дизайна (если вы человек со вкусом) пишите нам на почту</span>
+                    <span>WORK IN PROGRESS</span>
                 </div>
             </div>
             

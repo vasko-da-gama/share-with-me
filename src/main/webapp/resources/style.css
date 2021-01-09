@@ -221,6 +221,15 @@ body a {
     outline: none;
 }
 
+@media(max-width: 900px) {
+	#player_body {
+		width: 100%;
+	}
+	iframe {
+		width: 100%;
+	}
+}
+
 
 
 /* PAGE NOT FOUND */
