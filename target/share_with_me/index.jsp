@@ -35,6 +35,7 @@ ArrayList<String> video_ids = new ArrayList<String>(){
 
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="resources/style.css" type="text/css">
         <script type="text/javascript" src="resources/scripts/index_scripts.js"></script>
     </head>
